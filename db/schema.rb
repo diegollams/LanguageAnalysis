@@ -19,10 +19,10 @@ ActiveRecord::Schema.define(version: 20150523125155) do
   create_table "posts", force: :cascade do |t|
     t.string   "title"
     t.text     "body"
-    t.float    "rate"
-    t.integer  "evaluated"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.float    "rate",       default: 0.0
+    t.integer  "evaluated",  default: 0
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
 end

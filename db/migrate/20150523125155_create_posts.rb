@@ -3,8 +3,8 @@ class CreatePosts < ActiveRecord::Migration
     create_table :posts do |t|
       t.string :title
       t.text :body
-      t.float :rate
-      t.integer :evaluated
+      t.float :rate,default: 0
+      t.integer :evaluated, default: 0
 
       t.timestamps null: false
     end
