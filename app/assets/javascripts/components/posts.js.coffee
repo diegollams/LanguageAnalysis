@@ -4,9 +4,18 @@
   getDefaultProps: ->
     posts: []
   addPost: (post) ->
-    posts = @state.posts.slice()
-    posts.push post
+    posts = React.addons.update(@state.posts, { $push: [post] })
     @setState posts: posts
+  deletePost: (post)->
+    index = @state.posts.indexOf post
+    posts = React.addons.update(@state.posts, { $splice: [[index, 1]] })
+    posts.splice index,1
+    @replaceState posts: posts
+  editPost: (post,data) ->
+    index = @state.posts.indexOf post
+    posts = React.addons.update(@state.posts, { $splice: [[index, 1, data]] })
+    @replaceState posts: posts
+#  helpers
   rates: ->
     rates = @state.posts
     rates.reduce ((prev,current)->
@@ -17,11 +26,6 @@
     evaluated.reduce ((prev,current)->
       prev + current.evaluated
     ),0
-  deletePost: (post)->
-    posts = @state.posts.slice()
-    index = posts.indexOf post
-    posts.splice index,1
-    @replaceState posts: posts
   render: ->
     React.DOM.div
       className: 'posts'
@@ -45,4 +49,4 @@
             React.DOM.th null, 'Actions'
         React.DOM.tbody null,
           for post in @state.posts
-            React.createElement Post, key: post.id, post: post, handleDeletePost: @deletePost
+            React.createElement Post, key: post.id, post: post, handleDeletePost: @deletePost, handleEditPost: @editPost

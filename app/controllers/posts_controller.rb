@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 
-
+  before_action :set_post,only: [:destroy,:update]
   def index
     @posts = Post.all
   end
@@ -15,11 +15,22 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find params[:id]
     @post.destroy
     head :no_content
   end
 
+  def update
+    if @post.update post_params
+      render json: @post
+    else
+      render json: @post.errors, status: :unprocessable_entity
+    end
+  end
+
+  private
+  def set_post
+    @post = Post.find params[:id]
+  end
   def post_params
     params.require(:post).permit(:body,:title)
   end
