@@ -17,6 +17,11 @@
     evaluated.reduce ((prev,current)->
       prev + current.evaluated
     ),0
+  deletePost: (post)->
+    posts = @state.posts.slice()
+    index = posts.indexOf post
+    posts.splice index,1
+    @replaceState posts: posts
   render: ->
     React.DOM.div
       className: 'posts'
@@ -37,6 +42,7 @@
             React.DOM.th null, 'Body'
             React.DOM.th null, 'value'
             React.DOM.th null, 'evaluated'
-        React.DOM.tbody null
+            React.DOM.th null, 'Actions'
+        React.DOM.tbody null,
           for post in @state.posts
-            React.createElement Post, key: post.id, post: post
+            React.createElement Post, key: post.id, post: post, handleDeletePost: @deletePost

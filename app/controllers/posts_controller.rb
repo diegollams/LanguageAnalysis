@@ -14,6 +14,12 @@ class PostsController < ApplicationController
     end
   end
 
+  def destroy
+    @post = Post.find params[:id]
+    @post.destroy
+    head :no_content
+  end
+
   def post_params
     params.require(:post).permit(:body,:title)
   end
