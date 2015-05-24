@@ -3,12 +3,18 @@
     posts: @props.data
   getDefaultProps: ->
     posts: []
+  addPost: (post) ->
+    posts = @state.posts.slice()
+    posts.push post
+    @setState posts: posts
   render: ->
     React.DOM.div
       className: 'posts'
       React.DOM.h2
         className: 'title'
         'Posts'
+      React.createElement PostForm, handleNewPost: @addPost
+      React.DOM.hr null
       React.DOM.table
         className: 'table table-striped'
         React.DOM.thead null,
