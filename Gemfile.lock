@@ -189,7 +189,7 @@ DEPENDENCIES
   jquery-rails
   pg
   rails (= 4.2.1)
-  react-rails (~> 1.0)
+  react-rails
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   simple_form
