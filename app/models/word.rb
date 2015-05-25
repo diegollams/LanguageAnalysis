@@ -5,6 +5,7 @@ class Word < ActiveRecord::Base
   before_save :content_downcase
   validates_uniqueness_of :content
 
+  has_and_belongs_to_many :posts
 
   def self.happy_words
     where kind: true

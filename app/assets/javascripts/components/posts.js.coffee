@@ -9,7 +9,6 @@
   deletePost: (post)->
     index = @state.posts.indexOf post
     posts = React.addons.update(@state.posts, { $splice: [[index, 1]] })
-    posts.splice index,1
     @replaceState posts: posts
   editPost: (post,data) ->
     index = @state.posts.indexOf post

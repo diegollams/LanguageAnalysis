@@ -15,6 +15,7 @@ class WordsController < ApplicationController
 
   def destroy
     @word = Word.find params[:id]
+    @word.destroy
     head :no_content
   end
 
