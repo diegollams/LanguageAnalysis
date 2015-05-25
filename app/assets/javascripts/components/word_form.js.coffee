@@ -1,18 +1,20 @@
-@PostForm = React.createClass
+@WordForm = React.createClass
   getInitialState: ->
-    title: ''
-    body: ''
+    content: ''
+    kind: ''
+  valid: ->
+    @state.content && @state.kind
+
   handleChange: (e) ->
     name = e.target.name
     @setState "#{ name }": e.target.value
   handleSubmit: (e) ->
     e.preventDefault()
-    $.post '', { post: @state }, (data) =>
-      @props.handleNewPost data
+    $.post '', { word: @state }, (data) =>
+      @props.handleNewWord data
       @setState @getInitialState()
     , 'JSON'
-  valid: ->
-    @state.title && @state.body
+
   render: ->
     React.DOM.form
       className: 'form-inline'
@@ -22,21 +24,24 @@
         React.DOM.input
           type: 'text'
           className: 'form-control'
-          placeholder: 'Title'
-          name: 'title'
-          value: @state.title
+          placeholder: 'Word'
+          name: 'content'
+          value: @state.content
           onChange: @handleChange
-        React.DOM.div
-          className: 'form-group'
-          React.DOM.input
-            type: 'text'
-            className: 'form-control'
-            placeholder: 'Body'
-            name: 'body'
-            value: @state.body
-            onChange: @handleChange
+        React.DOM.select
+          className: 'form-control'
+          name: 'kind'
+          value: @state.kind
+          onChange: @handleChange
+          React.DOM.option
+            value: 'true'
+            'Happy'
+          React.DOM.option
+            value: 'false'
+            'Sad'
         React.DOM.button
           type: 'submit'
           className: 'btn btn-primary'
           disabled: !@valid()
-          'Create post'
+          'Create word'
+

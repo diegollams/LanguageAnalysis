@@ -9,6 +9,7 @@
       dataType: 'JSON'
       success: () =>
         @props.handleDeletePost @props.post
+
   handleEdit: (e) ->
     e.preventDefault()
     data =
