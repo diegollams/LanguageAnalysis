@@ -7,6 +7,15 @@ class Word < ActiveRecord::Base
 
   has_and_belongs_to_many :posts
 
+
+  def self.conjugation_search(query)
+    if query.present?
+      where("content % ?",query).where("similarity(content, '#{query}') > 0.3").order("similarity(content, '#{query}') DESC").limit 1
+    else
+      where content: ''
+    end
+  end
+
   def self.happy_words
     where kind: true
   end

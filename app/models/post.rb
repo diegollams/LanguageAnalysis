@@ -8,32 +8,20 @@ class Post < ActiveRecord::Base
   def evaluate
     self.rate = 0
     self.evaluated = 0
-    evaluate_words('happy',HAPPY_VALUE)
-    evaluate_words('sad',SAD_VALUE)
+    words.destroy_all
+    evaluate_words
   end
 
-  def evaluate_words(type,value)
-    happy_words =  instance_eval "Word.#{type}_to_hash"
+  def evaluate_words
     words = self.body.split(' ')  + self.title.split(' ')
     words.each do |word|
-       unless happy_words[word].nil?
-        self.rate += value
+       match = Word.conjugation_search(word.downcase) if word.length > 3
+       unless match.empty?
+        self.words << match
+        self.rate += match.first.kind ? HAPPY_VALUE : SAD_VALUE
         self.evaluated += 1
        end
     end
   end
-
-  # verify if this method is cleaner or evaluate_words
-  # def evaluate_happy
-  #   happy_words = Word.happy_to_hash
-  #   words = self.body.split(' ')  + self.title.split(' ')
-  #   words.each do |word|
-  #     if happy_words[word]
-  #       self.rate += HAPPY_VALUE
-  #       self.evaluated += 1
-  #     end
-  #   end
-  # end
-
 
 end
