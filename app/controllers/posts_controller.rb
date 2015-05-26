@@ -2,7 +2,7 @@ class PostsController < ApplicationController
 
   before_action :set_post,only: [:destroy,:update]
   def index
-    @posts = Post.all
+    @posts = JSON.parse Post.all.to_json include: :words
   end
 
   def create

@@ -9,7 +9,6 @@
       dataType: 'JSON'
       success: () =>
         @props.handleDeletePost @props.post
-
   handleEdit: (e) ->
     e.preventDefault()
     data =
@@ -33,6 +32,10 @@
       React.DOM.td null, @props.post.body
       React.DOM.td null, @props.post.rate
       React.DOM.td null, @props.post.evaluated
+      React.DOM.td null,
+        React.DOM.ul null,
+#          for word in @props.post.words
+#            React.DOM.li null, word.content
       React.DOM.td null,
         React.DOM.a
           className: 'btn btn-default'

@@ -15,7 +15,8 @@ class Post < ActiveRecord::Base
   def evaluate_words
     words = self.body.split(' ')  + self.title.split(' ')
     words.each do |word|
-       match = Word.conjugation_search(word.downcase) if word.length > 3
+       next if word.length < 3
+       match = Word.conjugation_search(word.downcase)
        unless match.empty?
         self.words << match
         self.rate += match.first.kind ? HAPPY_VALUE : SAD_VALUE

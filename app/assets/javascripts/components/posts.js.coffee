@@ -45,7 +45,9 @@
             React.DOM.th null, 'Body'
             React.DOM.th null, 'value'
             React.DOM.th null, 'evaluated'
+            React.DOM.th null, 'Words found'
             React.DOM.th null, 'Actions'
+
         React.DOM.tbody null,
           for post in @state.posts
             React.createElement Post, key: post.id, post: post, handleDeletePost: @deletePost, handleEditPost: @editPost
