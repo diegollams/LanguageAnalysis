@@ -8,7 +8,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new post_params
     if @post.save
-      render json: @post
+      render json: @post.as_json(include: :words)
     else
       render json: @post.errors , status: :unprocessable_entity
     end
@@ -21,7 +21,7 @@ class PostsController < ApplicationController
 
   def update
     if @post.update post_params
-      render json: @post
+      render json: @post.as_json(include: :words)
     else
       render json: @post.errors, status: :unprocessable_entity
     end

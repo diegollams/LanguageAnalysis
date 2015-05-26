@@ -12,7 +12,7 @@
       @setState @getInitialState()
 #    implement funtion for evaluated the rate and descripbe the feeling in the post
     .done (data) ->
-      alert data.rate
+      $('#modal').modal('show')
     , 'JSON'
   valid: ->
     @state.title && @state.body

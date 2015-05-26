@@ -26,8 +26,10 @@
       prev + current.evaluated
     ),0
   render: ->
+
     React.DOM.div
       className: 'posts'
+      React.createElement Modal
       React.DOM.h2
         className: 'title'
         'Posts'
@@ -47,7 +49,6 @@
             React.DOM.th null, 'evaluated'
             React.DOM.th null, 'Words found'
             React.DOM.th null, 'Actions'
-
         React.DOM.tbody null,
           for post in @state.posts
             React.createElement Post, key: post.id, post: post, handleDeletePost: @deletePost, handleEditPost: @editPost
