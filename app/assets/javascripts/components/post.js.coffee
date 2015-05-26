@@ -34,8 +34,8 @@
       React.DOM.td null, @props.post.evaluated
       React.DOM.td null,
         React.DOM.ul null,
-#          for word in @props.post.words
-#            React.DOM.li null, word.content
+          for word in @props.post.words
+            React.DOM.li null, word.content
       React.DOM.td null,
         React.DOM.a
           className: 'btn btn-default'
