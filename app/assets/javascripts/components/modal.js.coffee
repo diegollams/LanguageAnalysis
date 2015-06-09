@@ -12,10 +12,10 @@
           className: 'modal-content'
           React.DOM.div
             className: 'modal-header'
-            'cacacc'
+            'El evaluador concluyo'
           React.DOM.div
             className: 'modal-body'
-            'cacac'
+            @props.message
 
 #
 #    #myModal.{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}

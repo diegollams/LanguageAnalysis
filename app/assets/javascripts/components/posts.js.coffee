@@ -1,11 +1,15 @@
 @Posts = React.createClass
   getInitialState: ->
+    message: ''
     posts: @props.data
+    lastPost: null
   getDefaultProps: ->
     posts: []
   addPost: (post) ->
     posts = React.addons.update(@state.posts, { $push: [post] })
+    @setState message: post.message
     @setState posts: posts
+    $('#modal').modal('show')
   deletePost: (post)->
     index = @state.posts.indexOf post
     posts = React.addons.update(@state.posts, { $splice: [[index, 1]] })
@@ -29,7 +33,7 @@
 
     React.DOM.div
       className: 'posts'
-      React.createElement Modal
+      React.createElement Modal, message: @state.message
       React.DOM.h2
         className: 'title'
         'Posts'

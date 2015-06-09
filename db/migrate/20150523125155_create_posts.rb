@@ -5,7 +5,7 @@ class CreatePosts < ActiveRecord::Migration
       t.text :body
       t.float :rate,default: 0
       t.integer :evaluated, default: 0
-
+      t.text :message
       t.timestamps null: false
     end
   end

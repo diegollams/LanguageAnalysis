@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20150525161648) do
     t.text     "body"
     t.float    "rate",       default: 0.0
     t.integer  "evaluated",  default: 0
+    t.text     "message"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
   end

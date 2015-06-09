@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
+  get 'cover/show'
+
   resources :words
   resources :posts
-  root 'posts#index'
+  root 'cover#show'
 
 
 end
