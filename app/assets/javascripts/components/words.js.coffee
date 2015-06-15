@@ -21,8 +21,8 @@
         className: 'table table-striped'
         React.DOM.thead null,
           React.DOM.tr null,
-            React.DOM.th null, 'Word'
-            React.DOM.th null, 'Type'
+            React.DOM.th null, 'Palabras'
+            React.DOM.th null, 'Tipo'
             React.DOM.th null, 'Actions'
         React.DOM.tbody null,
           for word in @state.words

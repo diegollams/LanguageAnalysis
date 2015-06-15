@@ -4,6 +4,7 @@ class CreatePosts < ActiveRecord::Migration
       t.string :title
       t.text :body
       t.float :rate,default: 0
+      t.float :sum,default: 0
       t.integer :evaluated, default: 0
       t.text :message
       t.timestamps null: false

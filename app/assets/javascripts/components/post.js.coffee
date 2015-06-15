@@ -32,6 +32,7 @@
       React.DOM.td null, @props.post.body
       React.DOM.td null, @props.post.rate
       React.DOM.td null, @props.post.evaluated
+      React.DOM.td null, @props.post.message
       React.DOM.td null,
         React.DOM.ul null,
           for word in @props.post.words

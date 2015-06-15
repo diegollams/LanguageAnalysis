@@ -2,28 +2,36 @@ class Post < ActiveRecord::Base
   validates :body,:title,presence: true
   has_and_belongs_to_many :words
   before_save :evaluate
+
   HAPPY_VALUE = 1
   SAD_VALUE = -1
 
   def evaluate
-    self.rate = 0
     self.evaluated = 0
     words.destroy_all
     evaluate_words
-    create_message
   end
 
   def create_message
-    if rate > 0
-      self.message  = "Este post tiene una evaluacion de pensamientos positiva debido a que si rating es de #{rate}, y cuenta con #{positive_words.count} palabras positivas
-                    y tan solo cuenta con #{negative_words.count} palabras negativas"
-    elsif rate < 0
-      self.message = "Este post tiene una evaluacion de pensamioentos debido a que si rating es de #{rate}, y cuenta con #{negative_words.count} palabras negativcas
-                    y tan solo cuenta con #{positive_words.count} palabas positivas"
+    positive_words = self.positive_words.count
+    negative_words = self.negative_words.count
+    if self.sum > 0
+      rate = (positive_words * 100) / (positive_words + negative_words)
+      message  = "Este post tiene una evaluacion de pensamientos positiva debido a que el rating es de #{rate}, y cuenta con #{positive_words} palabras positivas
+                    y tan solo cuenta con #{negative_words} palabras negativas"
+
+
+    elsif self.sum < 0
+      rate = (negative_words * 100) / (positive_words + negative_words)
+      message = "Este post tiene una evaluacion de pensamiento negativos debido a que el rating es de #{rate}, y cuenta con #{negative_words} palabras negativas
+                    y tan solo cuenta con #{positive_words} palabras positivas"
     else
-      self.message = "Este post tiene una evaluacion de netrual debido a que si rating es de de 0, y cuenta con #{negative_words.count} palabras negativas
-                    y tan solo cuenta con #{positive_words.count} palabras positivas"
+      message = "Este post tiene una evaluacion de neutral debido a que el rating es de de 0, y cuenta con #{negative_words} palabras negativas
+                 y con #{positive_words} palabras positivas"
+      rate = 0
     end
+    update_attribute('message', message)
+    update_attribute('rate', rate)
   end
 
   def positive_words
@@ -41,7 +49,7 @@ class Post < ActiveRecord::Base
        match = Word.conjugation_search(word.downcase)
        unless match.empty?
         self.words << match
-        self.rate += match.first.kind ? HAPPY_VALUE : SAD_VALUE
+        self.sum += match.first.kind ? HAPPY_VALUE : SAD_VALUE
         self.evaluated += 1
        end
     end

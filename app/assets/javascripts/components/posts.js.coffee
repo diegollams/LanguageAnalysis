@@ -47,11 +47,12 @@
         className: 'table table-striped'
         React.DOM.thead null,
           React.DOM.tr null,
-            React.DOM.th null, 'Title'
-            React.DOM.th null, 'Body'
-            React.DOM.th null, 'value'
-            React.DOM.th null, 'evaluated'
-            React.DOM.th null, 'Words found'
+            React.DOM.th null, 'Titulo'
+            React.DOM.th null, 'Cuerpo'
+            React.DOM.th null, 'Evaluacion'
+            React.DOM.th null, '# palabras'
+            React.DOM.th null, 'Mensaje'
+            React.DOM.th null, 'Palabras encontradas'
             React.DOM.th null, 'Actions'
         React.DOM.tbody null,
           for post in @state.posts
