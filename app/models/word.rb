@@ -7,6 +7,9 @@ class Word < ActiveRecord::Base
 
   has_and_belongs_to_many :posts
 
+  KIND_HAPPY = 'happy'
+  KIND_SAD = 'sad'
+  KIND_DOUBT = 'doubt'
 
   def self.conjugation_search(query)
     if query.present?
@@ -16,14 +19,14 @@ class Word < ActiveRecord::Base
     end
   end
 
-  def self.happy_words
-    where kind: true
-  end
 
-  def self.sad_words
-    where kind: false
-  end
+  scope :happy_words, ->{where king: KIND_HAPPY}
+  scope :sad_words, ->{where king: KIND_SAD}
+  scope :doubt_words, ->{where king: KIND_DOUBT}
 
+  def happy?
+    kind == KIND_HAPPY
+  end
 
 
   def self.all_to_hash

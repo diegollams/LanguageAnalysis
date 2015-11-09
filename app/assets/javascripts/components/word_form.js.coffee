@@ -10,7 +10,7 @@
     @setState "#{ name }": e.target.value
   handleSubmit: (e) ->
     e.preventDefault()
-    $.post '', { word: @state }, (data) =>
+    $.post '/words', { word: @state }, (data) =>
       @props.handleNewWord data
       @setState @getInitialState()
     , 'JSON'
@@ -34,11 +34,14 @@
           value: @state.kind
           onChange: @handleChange
           React.DOM.option
-            value: 'true'
+            value: 'happy'
             'Happy'
           React.DOM.option
-            value: 'false'
+            value: 'sad'
             'Sad'
+          React.DOM.option
+            value: 'doubt'
+            'Duda'
         React.DOM.button
           type: 'submit'
           className: 'btn btn-primary'

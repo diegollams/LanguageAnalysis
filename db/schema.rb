@@ -28,9 +28,10 @@ ActiveRecord::Schema.define(version: 20150525161648) do
     t.datetime "updated_at",               null: false
   end
 
-  create_table "posts_words", id: false, force: :cascade do |t|
+  create_table "posts_words", force: :cascade do |t|
     t.integer  "word_id"
     t.integer  "post_id"
+    t.string   "meaning"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -40,7 +41,7 @@ ActiveRecord::Schema.define(version: 20150525161648) do
 
   create_table "words", force: :cascade do |t|
     t.string   "content"
-    t.boolean  "kind"
+    t.string   "kind"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

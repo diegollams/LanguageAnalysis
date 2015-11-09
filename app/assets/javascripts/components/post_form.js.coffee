@@ -7,12 +7,10 @@
     @setState "#{ name }": e.target.value
   handleSubmit: (e) ->
     e.preventDefault()
-    $.post '', { post: @state }, (data) =>
+    $.post '/posts', { post: @state }, (data) =>
       @props.handleNewPost data
       @setState @getInitialState()
 #    implement funtion for evaluated the rate and descripbe the feeling in the post
-
-
     , 'JSON'
   valid: ->
     @state.title && @state.body

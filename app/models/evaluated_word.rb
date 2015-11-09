@@ -1,4 +1,4 @@
 class EvaluatedWord < ActiveRecord::Base
-  belongs_to :words
-  belongs_to :posts
+  belongs_to :word
+  belongs_to :post
 end

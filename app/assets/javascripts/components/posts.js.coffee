@@ -5,6 +5,7 @@
     lastPost: null
   getDefaultProps: ->
     posts: []
+
   addPost: (post) ->
     posts = React.addons.update(@state.posts, { $push: [post] })
     @setState message: post.message

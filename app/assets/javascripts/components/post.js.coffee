@@ -1,6 +1,10 @@
 @Post = React.createClass
   getInitialState: ->
     edit: false
+  getDefaultProps: ->
+    posts: []
+  mixins: [ReactEmoji]
+
   handleDelete: (e) ->
     e.preventDefault()
     $.ajax
@@ -28,15 +32,15 @@
     @setState edit: !@state.edit
   postRow: ->
     React.DOM.tr null,
-      React.DOM.td null, @props.post.title
-      React.DOM.td null, @props.post.body
-      React.DOM.td null, @props.post.rate
+      React.DOM.td null, ReactEmoji.emojify(@props.post.title)
+      React.DOM.td null, ReactEmoji.emojify(@props.post.body)
+      React.DOM.td null, @props.post.sum
       React.DOM.td null, @props.post.evaluated
       React.DOM.td null, @props.post.message
       React.DOM.td null,
         React.DOM.ul null,
           for word in @props.post.words
-            React.DOM.li null, word.content
+            React.DOM.li null, "#{word.content}(#{word.kind})"
       React.DOM.td null,
         React.DOM.a
           className: 'btn btn-default'
@@ -60,7 +64,7 @@
           type: 'text'
           defaultValue: @props.post.body
           ref: 'body'
-      React.DOM.td null, @props.post.rate
+      React.DOM.td null, @props.post.sum
       React.DOM.td null, @props.post.evaluated
       React.DOM.td null,
         React.DOM.a

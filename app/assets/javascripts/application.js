@@ -15,6 +15,7 @@
 //= require twitter/bootstrap
 //= require turbolinks
 //= require react
+//= require react-emoji
 //= require react_ujs
 //= require components
 //= require_tree .

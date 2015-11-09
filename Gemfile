@@ -26,6 +26,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'haml-rails'
 gem 'simple_form'
 gem 'therubyracer'
+gem "bower-rails", "~> 0.10.0"
 gem 'twitter-bootstrap-rails'
 gem 'react-rails'
 # Use ActiveModel has_secure_password
